@@ -1,6 +1,10 @@
 # Quick Start Guide
 
-Get up and running with the Supabase Coolify MCP Server in 10 minutes.
+[![npm version](https://img.shields.io/npm/v/supabase-coolify-mcp-server.svg)](https://www.npmjs.com/package/supabase-coolify-mcp-server)
+
+Get up and running with the Supabase Coolify MCP Server in 5 minutes.
+
+**[📦 NPM Package](https://www.npmjs.com/package/supabase-coolify-mcp-server)** • **[💻 GitHub](https://github.com/dj-pearson/supabase-coolify-mcp-server)**
 
 ## ⚡ Prerequisites
 
@@ -11,15 +15,22 @@ Get up and running with the Supabase Coolify MCP Server in 10 minutes.
 
 ## 🚀 5-Minute Setup
 
-### Step 1: Install (1 minute)
+### Step 1: Install (< 1 minute)
 
+**Option A: Use directly with npx (No Installation)**
+```bash
+# No installation needed! npx will download and run it
+npx supabase-coolify-mcp-server
+```
+
+**Option B: Install globally**
 ```bash
 npm install -g supabase-coolify-mcp-server
 ```
 
-Or from source:
+**Option C: From source**
 ```bash
-git clone <repository-url>
+git clone https://github.com/dj-pearson/supabase-coolify-mcp-server.git
 cd supabase-coolify-mcp-server
 npm install
 npm run build
@@ -55,7 +66,7 @@ Add this configuration:
   "mcpServers": {
     "supabase-coolify": {
       "command": "npx",
-      "args": ["supabase-coolify-mcp-server", "--yes"],
+      "args": ["-y", "supabase-coolify-mcp-server"],
       "env": {
         "COOLIFY_API_URL": "https://your-coolify-instance.com",
         "COOLIFY_API_TOKEN": "your-coolify-api-token-here"
@@ -65,7 +76,22 @@ Add this configuration:
 }
 ```
 
-**Note:** If you already have Supabase, also add:
+**If using global installation:**
+```json
+{
+  "mcpServers": {
+    "supabase-coolify": {
+      "command": "supabase-coolify-mcp",
+      "env": {
+        "COOLIFY_API_URL": "https://your-coolify-instance.com",
+        "COOLIFY_API_TOKEN": "your-coolify-api-token-here"
+      }
+    }
+  }
+}
+```
+
+**Note:** If you already have Supabase, also add these environment variables:
 ```json
 "SUPABASE_URL": "https://your-supabase.com",
 "SUPABASE_SERVICE_ROLE_KEY": "your-service-role-key"

@@ -1,6 +1,14 @@
 # Supabase Coolify MCP Server
 
+[![npm version](https://img.shields.io/npm/v/supabase-coolify-mcp-server.svg)](https://www.npmjs.com/package/supabase-coolify-mcp-server)
+[![npm downloads](https://img.shields.io/npm/dm/supabase-coolify-mcp-server.svg)](https://www.npmjs.com/package/supabase-coolify-mcp-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
+
 A comprehensive TypeScript MCP (Model Context Protocol) server for managing self-hosted Supabase on Coolify. This server enables AI agents to fully deploy migrations, push edge functions, configure services, and manage Supabase deployments with ease.
+
+**[📦 NPM Package](https://www.npmjs.com/package/supabase-coolify-mcp-server)** • **[📚 Documentation](#-features)** • **[🚀 Quick Start](./QUICKSTART.md)**
 
 ## 🚀 Features
 
@@ -42,16 +50,28 @@ A comprehensive TypeScript MCP (Model Context Protocol) server for managing self
 
 ## 🔧 Installation
 
-### Method 1: NPM Package (Recommended)
+### Method 1: NPM (Recommended)
+
+Install globally via NPM:
 
 ```bash
 npm install -g supabase-coolify-mcp-server
 ```
 
-### Method 2: From Source
+Or use directly with npx (no installation needed):
 
 ```bash
-git clone <repository-url>
+npx supabase-coolify-mcp-server
+```
+
+**Package:** [https://www.npmjs.com/package/supabase-coolify-mcp-server](https://www.npmjs.com/package/supabase-coolify-mcp-server)
+
+### Method 2: From Source
+
+Clone and build from GitHub:
+
+```bash
+git clone https://github.com/dj-pearson/supabase-coolify-mcp-server.git
 cd supabase-coolify-mcp-server
 npm install
 npm run build
@@ -121,12 +141,14 @@ Add to your Claude Desktop configuration:
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`  
 **Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
 
+#### Using NPX (Recommended - Always Latest)
+
 ```json
 {
   "mcpServers": {
     "supabase-coolify": {
-      "command": "node",
-      "args": ["/path/to/supabase-coolify-mcp-server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "supabase-coolify-mcp-server"],
       "env": {
         "COOLIFY_API_URL": "http://localhost:8000",
         "COOLIFY_API_TOKEN": "your-coolify-api-token",
@@ -138,14 +160,19 @@ Add to your Claude Desktop configuration:
 }
 ```
 
-#### Using NPX
+#### Using Global Installation
 
+First install globally:
+```bash
+npm install -g supabase-coolify-mcp-server
+```
+
+Then configure:
 ```json
 {
   "mcpServers": {
     "supabase-coolify": {
-      "command": "npx",
-      "args": ["supabase-coolify-mcp-server", "--yes"],
+      "command": "supabase-coolify-mcp",
       "env": {
         "COOLIFY_API_URL": "http://localhost:8000",
         "COOLIFY_API_TOKEN": "your-coolify-api-token",
@@ -597,18 +624,20 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 MIT
 
-## 🔗 Related Projects
+## 🔗 Links
 
-- [Coolify](https://coolify.io) - Self-hostable Heroku/Netlify alternative
-- [Supabase](https://supabase.com) - Open source Firebase alternative
-- [Model Context Protocol](https://github.com/modelcontextprotocol) - MCP specification
+- **NPM Package**: [https://www.npmjs.com/package/supabase-coolify-mcp-server](https://www.npmjs.com/package/supabase-coolify-mcp-server)
+- **GitHub Repository**: [https://github.com/dj-pearson/supabase-coolify-mcp-server](https://github.com/dj-pearson/supabase-coolify-mcp-server)
+- **Coolify**: [https://coolify.io](https://coolify.io) - Self-hostable Heroku/Netlify alternative
+- **Supabase**: [https://supabase.com](https://supabase.com) - Open source Firebase alternative
+- **Model Context Protocol**: [https://modelcontextprotocol.io](https://modelcontextprotocol.io) - MCP specification
 
 ## 📞 Support
 
 For issues and questions:
-- Create an issue on GitHub
+- [Create an issue on GitHub](https://github.com/dj-pearson/supabase-coolify-mcp-server/issues)
 - Check the [troubleshooting section](#troubleshooting)
-- Review Coolify and Supabase documentation
+- Review [Coolify](https://coolify.io/docs) and [Supabase](https://supabase.com/docs) documentation
 
 ---
 
