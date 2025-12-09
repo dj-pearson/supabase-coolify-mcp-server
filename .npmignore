@@ -1,0 +1,56 @@
+# Source files (TypeScript)
+src/
+tsconfig.json
+
+# Development files
+.archive/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment examples (users should copy env.example)
+.env
+.env.*
+
+# Documentation that's not needed in package
+ARCHITECTURE.md
+DEPLOYMENT_GUIDE.md
+CONTRIBUTING.md
+
+# Examples (available in GitHub repo)
+examples/
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+
+# Keep these in package:
+# - dist/ (built JavaScript)
+# - docs/ (API documentation)
+# - README.md
+# - QUICKSTART.md
+# - CHANGELOG.md
+# - LICENSE
+# - package.json
+# - env.example
+

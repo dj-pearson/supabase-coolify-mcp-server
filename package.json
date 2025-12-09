@@ -1,0 +1,72 @@
+{
+  "name": "supabase-coolify-mcp-server",
+  "version": "1.2.0",
+  "description": "MCP server for managing self-hosted Supabase on Coolify with full deployment support",
+  "main": "dist/index.js",
+  "bin": {
+    "supabase-coolify-mcp": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist/",
+    "docs/",
+    "README.md",
+    "QUICKSTART.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "env.example"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "supabase",
+    "coolify",
+    "self-hosted",
+    "deployment",
+    "migrations",
+    "edge-functions",
+    "database",
+    "postgres",
+    "typescript",
+    "cli",
+    "automation",
+    "devops"
+  ],
+  "author": "DjPearson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/supabase-coolify-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/supabase-coolify-mcp-server/issues"
+  },
+  "homepage": "https://github.com/yourusername/supabase-coolify-mcp-server#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@supabase/supabase-js": "^2.45.4",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^9.16.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
