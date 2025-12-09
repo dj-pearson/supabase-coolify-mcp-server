@@ -174,8 +174,8 @@ export class SupabaseManager {
         const { error: execError } = await this.client.rpc('exec_sql', { sql_query: downSql });
         
         if (execError) {
-          const { error: rawError } = await this.executeSQL(downSql);
-          if (!rawError.success) throw new Error(rawError.error);
+          const rawResult = await this.executeSQL(downSql);
+          if (!rawResult.success) throw new Error(rawResult.error);
         }
       }
 
