@@ -44,12 +44,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/supabase-coolify-mcp-server.git"
+    "url": "https://github.com/dj-pearson/supabase-coolify-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/supabase-coolify-mcp-server/issues"
+    "url": "https://github.com/dj-pearson/supabase-coolify-mcp-server/issues"
   },
-  "homepage": "https://github.com/yourusername/supabase-coolify-mcp-server#readme",
+  "homepage": "https://github.com/dj-pearson/supabase-coolify-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
     "@supabase/supabase-js": "^2.45.4",
