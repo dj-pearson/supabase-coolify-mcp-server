@@ -5,7 +5,7 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { CoolifyClient } from '../coolify-client.js';
 import { SupabaseManager } from '../supabase-client.js';
-import { SupabaseDeploymentConfig, ToolResponse } from '../types.js';
+import { SupabaseDeploymentConfig } from '../types.js';
 
 export function registerDeploymentTools(
   server: Server,

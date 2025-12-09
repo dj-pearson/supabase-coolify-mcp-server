@@ -264,7 +264,7 @@ export class HealthChecker {
           timestamp: new Date().toISOString(),
         };
       }
-    } catch (error) {
+    } catch {
       return {
         service: 'Supabase Database',
         status: 'warning',
@@ -298,7 +298,7 @@ export class HealthChecker {
           timestamp: new Date().toISOString(),
         };
       }
-    } catch (error) {
+    } catch {
       return {
         service: 'Supabase CLI',
         status: 'warning',

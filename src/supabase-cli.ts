@@ -39,7 +39,7 @@ export class SupabaseCLI {
           version,
         },
       };
-    } catch (error) {
+    } catch {
       return {
         success: false,
         data: {
@@ -55,7 +55,7 @@ export class SupabaseCLI {
    */
   async init(projectPath: string = '.'): Promise<ToolResponse<string>> {
     try {
-      const { stdout, stderr } = await execAsync(`supabase init`, {
+      const { stdout } = await execAsync(`supabase init`, {
         cwd: projectPath,
       });
 
@@ -221,10 +221,6 @@ export class SupabaseCLI {
    */
   async functionsServe(functionName?: string): Promise<ToolResponse<string>> {
     try {
-      const command = functionName
-        ? `supabase functions serve ${functionName}`
-        : 'supabase functions serve';
-
       // This is a long-running command, so we'll return immediately
       const child = spawn('supabase', ['functions', 'serve', ...(functionName ? [functionName] : [])], {
         detached: true,

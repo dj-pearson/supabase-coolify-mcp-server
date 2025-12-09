@@ -408,7 +408,7 @@ export class SupabaseManager {
     try {
       const functionsUrl = this.config.functionsUrl || `${this.config.url}/functions/v1`;
       
-      const response = await axios.post(
+      await axios.post(
         `${functionsUrl}/${name}`,
         { code, verify_jwt: verifyJWT },
         {
@@ -530,7 +530,7 @@ export class SupabaseManager {
     fileSizeLimit?: number
   ): Promise<ToolResponse<StorageBucket>> {
     try {
-      const { data, error } = await this.client.storage.createBucket(id, {
+      const { error } = await this.client.storage.createBucket(id, {
         public: isPublic,
         fileSizeLimit,
       });
