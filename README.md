@@ -6,6 +6,23 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 
+## ⚡ One-Click Install
+
+Install directly in your favorite AI coding tool:
+
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Server-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=supabase-coolify&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22supabase-coolify-mcp-server%22%5D%7D)
+[![Install in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Install_Server-24bfa5?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=supabase-coolify&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22supabase-coolify-mcp-server%22%5D%7D&quality=insiders)
+[![Install in Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=supabase-coolify&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInN1cGFiYXNlLWNvb2xpZnktbWNwLXNlcnZlciJdfQ==)
+
+**Claude Code:**
+```bash
+claude mcp add supabase-coolify -- npx -y supabase-coolify-mcp-server
+```
+
+> **Note:** After installation, you'll need to configure the required environment variables. See [Configuration](#️-configuration) below.
+
+---
+
 A comprehensive TypeScript MCP (Model Context Protocol) server for managing self-hosted Supabase on Coolify. This server enables AI agents to fully deploy migrations, push edge functions, configure services, and manage Supabase deployments with ease.
 
 **[📦 NPM Package](https://www.npmjs.com/package/supabase-coolify-mcp-server)** • **[📚 Documentation](#-features)** • **[🚀 Quick Start](./QUICKSTART.md)**
