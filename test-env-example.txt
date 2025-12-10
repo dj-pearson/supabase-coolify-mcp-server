@@ -1,0 +1,33 @@
+# Test .env file for wrapper scripts
+# This file contains various quote formats to test the wrapper scripts
+
+# No quotes (standard)
+TEST_NO_QUOTES=value1
+
+# Double quotes (common for values with spaces)
+TEST_DOUBLE_QUOTES="value with spaces"
+
+# Single quotes
+TEST_SINGLE_QUOTES='another value'
+
+# Mixed content
+TEST_URL="https://api.example.com:8000"
+
+# Token-like value with special characters
+TEST_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test"
+
+# Unquoted with special characters
+TEST_UNQUOTED_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test
+
+# Empty value
+TEST_EMPTY=
+
+# Empty with quotes
+TEST_EMPTY_QUOTES=""
+
+# Value with equals sign
+TEST_WITH_EQUALS="key=value"
+
+# Comments should be ignored
+# COMMENTED_VAR=should_be_ignored
+

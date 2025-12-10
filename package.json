@@ -22,6 +22,8 @@
     "diagnose.ts",
     "diagnose.ps1",
     "diagnose.sh",
+    "start-mcp.ps1",
+    "start-mcp.sh",
     "env.example"
   ],
   "scripts": {

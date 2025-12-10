@@ -19,4 +19,3 @@ if (Test-Path .env) {
 
 # Start the MCP server
 & node dist/index.js
-
