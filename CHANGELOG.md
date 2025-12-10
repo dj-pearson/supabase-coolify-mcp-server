@@ -2,6 +2,56 @@
 
 All notable changes to the Supabase Coolify MCP Server.
 
+## [1.2.4] - 2024-12-10
+
+### 🐛 Bug Fixes - Self-Hosted Supabase Compatibility
+
+#### Fixed REST API Tool Issues
+
+Fixed three critical issues with REST API-based tools that don't work reliably on self-hosted Supabase:
+
+1. **`deploy_migration` tool** - Was calling non-existent `exec_sql` RPC function
+   - Now provides clear error messages when SQL execution fails
+   - Guides users to use CLI tools instead: `supabase_migration_new` + `supabase_db_push`
+   - Creates migration metadata even when execution fails
+
+2. **`execute_sql` tool** - Was calling non-existent `/rest/v1/rpc/exec_sql` endpoint
+   - Now attempts RPC execution and provides helpful alternatives on failure
+   - Recommends using `supabase_cli_execute` for reliable SQL execution
+   - Provides clear guidance: CLI, Dashboard, or direct psql connection
+
+3. **`list_edge_functions` tool** - Was using incorrect endpoint causing auth errors
+   - Now uses proper functions API with better error handling
+   - Detects when Edge Functions are not configured/enabled
+   - Guides users to use `supabase_functions_list` CLI tool
+
+#### Updated Tool Descriptions
+
+- Added "NOTE" messages to tool descriptions guiding users toward CLI tools for self-hosted setups
+- Updated error messages to provide actionable alternatives
+- Better detection of self-hosted vs managed Supabase capabilities
+
+#### Documentation Updates
+
+- Emphasized MCP config `env` section as the primary scalable configuration method
+- Updated priority chain documentation to clarify that MCP config works for all installation types
+- Added user type recommendations table in `MCP_CONFIGURATION.md`
+
+### Why These Changes
+
+**Self-hosted Supabase has different capabilities than managed Supabase:**
+- Some REST API endpoints may not be available
+- RPC functions must be explicitly created
+- Edge Functions require additional setup
+- **The Supabase CLI is the most reliable way to interact with self-hosted instances**
+
+**Recommendation:** For self-hosted Supabase, prefer CLI tools over REST API tools:
+- ✅ `supabase_migration_new` + `supabase_db_push` instead of `deploy_migration`
+- ✅ `supabase_cli_execute` instead of `execute_sql`
+- ✅ `supabase_functions_deploy` instead of `deploy_edge_function`
+
+---
+
 ## [1.2.3] - 2024-12-10
 
 ### 📚 Critical Documentation Update

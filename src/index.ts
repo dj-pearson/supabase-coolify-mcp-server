@@ -23,9 +23,16 @@ import { registerResources } from './resources.js';
 import { runStartupHealthCheck, createVerificationReport } from './health-check.js';
 
 // Load environment variables with priority:
-// 1. MCP config env vars (if provided by MCP client)
-// 2. System environment variables
-// 3. .env file (fallback for development)
+// 1. MCP config env vars (HIGHEST - if provided by MCP client) - Already in process.env
+// 2. System environment variables (MEDIUM) - Already in process.env  
+// 3. .env file in CURRENT WORKING DIRECTORY (LOWEST - fallback for development)
+//
+// IMPORTANT: dotenv.config() only sets variables that DON'T already exist in process.env,
+// so MCP config and system env vars will NEVER be overridden by a .env file.
+//
+// Note: If running the MCP server from within a project directory that has its own .env,
+// those values will only be used for variables NOT already set by MCP config or system env.
+// This is intentional and allows project-specific optional variables (like SUPABASE_PROJECT_REF).
 dotenv.config();
 
 // Validate required environment variables
@@ -87,7 +94,7 @@ const supabaseCLI = new SupabaseCLI({
 const server = new Server(
   {
     name: 'supabase-coolify-mcp-server',
-    version: '1.2.3',
+    version: '1.2.4',
   },
   {
     capabilities: {
@@ -175,7 +182,7 @@ function getToolMetadata(toolName: string) {
     },
     deploy_migration: {
       name: 'deploy_migration',
-      description: 'Deploy a new database migration',
+      description: 'Deploy a new database migration. NOTE: For self-hosted Supabase, consider using supabase_migration_new + supabase_db_push instead for better reliability.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -187,7 +194,7 @@ function getToolMetadata(toolName: string) {
     },
     execute_sql: {
       name: 'execute_sql',
-      description: 'Execute raw SQL query on Supabase database',
+      description: 'Execute raw SQL query on Supabase database. NOTE: For self-hosted Supabase, use supabase_cli_execute with "db execute" for better reliability.',
       inputSchema: {
         type: 'object',
         properties: {

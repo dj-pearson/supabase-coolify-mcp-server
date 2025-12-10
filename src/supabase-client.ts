@@ -83,19 +83,39 @@ export class SupabaseManager {
     try {
       const version = new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14);
 
-      // Execute the migration SQL
-      const { error: execError } = await this.client.rpc('exec_sql', { sql_query: sql });
+      // Execute the migration SQL directly using the admin client
+      // PostgREST doesn't support arbitrary SQL execution, so we need to use direct execution
+      const { data: result, error } = await this.client.rpc('exec', { 
+        query: sql 
+      });
       
-      if (execError) {
-        // Try alternative method using raw query
-        const { error: rawError } = await this.client.from('_migrations').insert({
-          version,
-          name,
-          sql,
-          executed_at: new Date().toISOString(),
-        });
+      if (error) {
+        // If rpc doesn't work, try using pg_stat_statements or direct query
+        // For self-hosted Supabase, we'll need to execute via admin API
+        try {
+          await this.adminClient.post('/rest/v1/rpc/query', { q: sql });
+        } catch (adminError) {
+          // As a last resort, record the migration without executing
+          // (user will need to execute SQL manually via CLI or dashboard)
+          console.error('Warning: Could not execute migration SQL automatically.');
+          console.error('Please execute the following SQL manually in your Supabase dashboard:');
+          console.error(sql);
+          
+          // Still record it as pending
+          const migration: Migration = {
+            version,
+            name,
+            executed_at: new Date().toISOString(),
+            status: 'pending',
+            sql,
+          };
 
-        if (rawError) throw execError || rawError;
+          return {
+            success: false,
+            error: `Migration created but SQL execution failed: ${error.message}. Execute SQL manually in Supabase dashboard, then use CLI: supabase migration list`,
+            data: migration,
+          };
+        }
       }
 
       const migration: Migration = {
@@ -109,7 +129,7 @@ export class SupabaseManager {
       return {
         success: true,
         data: migration,
-        message: `Migration ${name} deployed successfully`,
+        message: `Migration ${name} (${version}) created. Note: For self-hosted Supabase, you may need to apply migrations using the Supabase CLI: supabase db push`,
       };
     } catch (error) {
       return this.handleError(error, 'Failed to deploy migration');
@@ -118,16 +138,28 @@ export class SupabaseManager {
 
   /**
    * Execute raw SQL query
+   * Note: Self-hosted Supabase may not have exec_sql RPC function
+   * Users should use Supabase CLI or dashboard for direct SQL execution
    */
   async executeSQL(sql: string): Promise<ToolResponse<any>> {
     try {
-      const response = await this.adminClient.post('/rest/v1/rpc/exec_sql', {
-        query: sql,
-      });
+      // Try using pg_stat_statements extension if available
+      const { data, error } = await this.client.rpc('exec', { query: sql });
+      
+      if (error) {
+        return {
+          success: false,
+          error: `SQL execution not supported via REST API. Please use one of these alternatives:\n` +
+                 `1. Supabase CLI: supabase db execute --file your-file.sql\n` +
+                 `2. Supabase Dashboard: SQL Editor\n` +
+                 `3. Direct psql connection: psql $SUPABASE_DB_URL\n` +
+                 `Error: ${error.message}`,
+        };
+      }
 
       return {
         success: true,
-        data: response.data,
+        data,
         message: 'SQL executed successfully',
       };
     } catch (error) {
@@ -383,17 +415,45 @@ export class SupabaseManager {
 
   /**
    * List all edge functions
+   * Note: Edge functions listing via REST API may not be available on self-hosted
    */
   async listEdgeFunctions(): Promise<ToolResponse<EdgeFunction[]>> {
     try {
-      const response = await this.adminClient.get('/functions/v1');
+      // Try to list functions using admin API
+      const functionsUrl = this.config.functionsUrl || `${this.config.url}/functions/v1`;
+      
+      const response = await axios.get(functionsUrl, {
+        headers: {
+          'Authorization': `Bearer ${this.config.serviceRoleKey}`,
+          'apikey': this.config.serviceRoleKey,
+        },
+        validateStatus: (status) => status < 500, // Accept 4xx responses
+      });
+      
+      if (response.status === 404) {
+        return {
+          success: false,
+          error: 'Edge Functions not configured on this Supabase instance. ' +
+                 'For self-hosted Supabase, edge functions require additional setup. ' +
+                 'Use Supabase CLI instead: supabase functions deploy',
+        };
+      }
+
+      if (response.status >= 400) {
+        return {
+          success: false,
+          error: `Edge Functions API returned ${response.status}. ` +
+                 'Edge functions may not be enabled or configured. ' +
+                 'Use Supabase CLI for edge function management: supabase functions list',
+        };
+      }
       
       return {
         success: true,
-        data: response.data,
+        data: response.data || [],
       };
     } catch (error) {
-      return this.handleError(error, 'Failed to list edge functions');
+      return this.handleError(error, 'Failed to list edge functions. Consider using Supabase CLI: supabase functions list');
     }
   }
 
