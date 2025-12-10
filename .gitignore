@@ -40,3 +40,5 @@ temp/
 
 # Archive (internal development files)
 .archive/
+READY_TO_PUBLISH.md
+PUBLISH.md

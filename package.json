@@ -1,6 +1,6 @@
 {
   "name": "supabase-coolify-mcp-server",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "MCP server for managing self-hosted Supabase on Coolify with full deployment support",
   "main": "dist/index.js",
   "bin": {
@@ -14,12 +14,20 @@
     "QUICKSTART.md",
     "CHANGELOG.md",
     "LICENSE",
+    "UPGRADE.md",
+    "START_HERE.md",
+    "DIAGNOSE_NOW.md",
+    "TROUBLESHOOTING.md",
+    "diagnose.ts",
+    "diagnose.ps1",
+    "diagnose.sh",
     "env.example"
   ],
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "diagnose": "tsx diagnose.ts",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run typecheck && npm run lint && npm run build"

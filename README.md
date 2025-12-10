@@ -523,6 +523,89 @@ npm start
 
 See [docs/VERIFICATION.md](docs/VERIFICATION.md) for complete verification guide.
 
+## 🔍 Diagnostics & Testing
+
+Before reporting issues or if you're having connection problems, use the built-in diagnostic tool:
+
+### Quick Diagnosis
+
+Run the automated diagnostic tool to check your setup:
+
+```bash
+# Using npm
+npm run diagnose
+
+# Or on Windows
+.\diagnose.ps1
+
+# Or on Linux/Mac
+./diagnose.sh
+```
+
+The diagnostic tool will automatically check:
+- ✅ `.env` file existence and configuration
+- ✅ Required environment variables
+- ✅ Coolify API connection and authentication
+- ✅ Supabase connection and authentication
+- ✅ All Supabase services health
+- ✅ Network connectivity
+
+### Expected Output (When Working)
+
+```
+🟢 ALL CHECKS PASSED - MCP Server should work correctly
+
+✅ Passed:   10
+❌ Failed:   0
+⚠️  Warnings: 0
+```
+
+### Common Diagnostic Issues
+
+#### Missing .env File
+```bash
+❌ .env file NOT found!
+```
+**Fix**: `cp env.example .env` then edit with your credentials
+
+#### Placeholder Values
+```bash
+❌ ENV: COOLIFY_API_TOKEN: Contains placeholder value
+```
+**Fix**: Replace `your-coolify-api-token-here` with actual token from Coolify Dashboard → Keys & Tokens
+
+#### Wrong Supabase Key
+```bash
+❌ Supabase Authentication: Invalid service role key
+```
+**Fix**: Make sure you're using the **service_role** key, NOT the anon key!  
+Get it from: Supabase Dashboard → Settings → API → `service_role` key
+
+#### Connection Failed
+```bash
+❌ Coolify Connection: ECONNREFUSED
+```
+**Fix**: Verify Coolify is running and accessible at the configured URL
+
+### Getting Credentials
+
+**Coolify API Token**:
+1. Coolify Dashboard → Profile → Keys & Tokens → API Tokens
+2. Click "Create New Token"
+3. Copy the token (you won't see it again!)
+4. Add to `.env` as `COOLIFY_API_TOKEN`
+
+**Supabase Service Role Key**:
+- **Supabase Cloud**: Dashboard → Settings → API → Copy `service_role` key
+- **Self-hosted**: Check Coolify deployment environment variables for `SERVICE_ROLE_KEY`
+
+### Quick Start Guide
+
+For detailed troubleshooting, see:
+- **[START_HERE.md](START_HERE.md)** - Quick start with diagnostics
+- **[DIAGNOSE_NOW.md](DIAGNOSE_NOW.md)** - Step-by-step diagnosis
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Comprehensive troubleshooting guide
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
