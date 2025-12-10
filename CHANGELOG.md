@@ -48,7 +48,7 @@ Users were seeing placeholder URLs (`your-supabase-instance.example.com`) becaus
 
 - Added `MCP_CONFIGURATION.md` - Complete MCP configuration guide with all three approaches
 - Added `start-mcp.ps1` - Windows PowerShell wrapper script with proper quote handling
-- Added `start-mcp.sh` - Linux/Mac bash wrapper script with proper quote handling  
+- Added `start-mcp.sh` - Linux/Mac bash wrapper script with proper quote handling
 - Updated `README.md` - Added prominent MCP configuration warning
 - Updated `src/index.ts` - Clearer error messages explaining all configuration options
 - Added to package.json files array
@@ -64,11 +64,13 @@ Users were seeing placeholder URLs (`your-supabase-instance.example.com`) becaus
 ### ✨ Features
 
 **Triple Priority System for Environment Variables:**
+
 1. **MCP Config `env` section** (highest priority) - Quick setup, all in config
-2. **System environment variables** (medium priority) - Secure, nothing in config files  
+2. **System environment variables** (medium priority) - Secure, nothing in config files
 3. **`.env` file with wrapper scripts** (lowest priority) - Development, gitignored
 
 **Four Configuration Approaches:**
+
 - **Quick Start:** All vars in MCP config
 - **Secure:** System environment variables only
 - **Development:** `.env` file with wrapper script
