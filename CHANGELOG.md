@@ -7,9 +7,11 @@ All notable changes to the Supabase Coolify MCP Server.
 ### 🔍 Enhanced Diagnostics & User Experience
 
 #### Comprehensive Diagnostic System
+
 Added powerful diagnostic tools to help users troubleshoot connection issues and validate their setup.
 
 **New Features:**
+
 - `npm run diagnose` - Automated diagnostic tool
 - Platform-specific diagnostic scripts:
   - `diagnose.ps1` - Windows PowerShell script
@@ -17,6 +19,7 @@ Added powerful diagnostic tools to help users troubleshoot connection issues and
 - `diagnose.ts` - Main TypeScript diagnostic tool
 
 **Diagnostics Check:**
+
 - ✅ `.env` file existence and validation
 - ✅ All required environment variables
 - ✅ Placeholder value detection
@@ -27,13 +30,16 @@ Added powerful diagnostic tools to help users troubleshoot connection issues and
 - ✅ Detailed error messages with fix suggestions
 
 #### New Documentation
+
 Comprehensive guides to help users get started and troubleshoot issues:
 
 **Quick Start:**
+
 - `START_HERE.md` - Quick start guide with diagnostics
 - `DIAGNOSE_NOW.md` - Step-by-step troubleshooting
 
 **Comprehensive Guides:**
+
 - `TROUBLESHOOTING.md` - Complete troubleshooting guide
   - Common issues and solutions
   - Getting credentials guide
@@ -46,17 +52,21 @@ Comprehensive guides to help users get started and troubleshoot issues:
   - New features guide
 
 **Updated:**
+
 - Enhanced README.md with diagnostics section
 - Quick reference for common issues
 - Credential acquisition guide
 
 #### Developer Experience
+
 **New Test Scripts:**
+
 - Functional test suite (archived in `.archive/`)
 - MCP server registration tests (archived in `.archive/`)
 - Comprehensive test results documentation (archived in `.archive/`)
 
 **Test Results (All Passing ✅):**
+
 - ✅ 56 MCP tools registered and tested
 - ✅ Coolify integration verified (4 applications, 6 services found)
 - ✅ Supabase integration verified (Database, Auth, Storage healthy)
@@ -64,43 +74,54 @@ Comprehensive guides to help users get started and troubleshoot issues:
 - ✅ All core functionality working
 
 #### Improvements
+
 **Error Messages:**
+
 - More descriptive error messages
 - Contextual fix suggestions
 - Color-coded diagnostic output
 - Summary reports with actionable items
 
 **Validation:**
+
 - Better detection of placeholder values
 - Verification of correct credential types (service_role vs anon key)
 - URL format validation
 - Connection timeout handling
 
 **Build:**
+
 - Clean TypeScript compilation
 - No breaking changes
 - Backward compatible with v1.1.x
 
 #### Bug Fixes
+
 - Fixed PowerShell script arrow character encoding
 - Improved error handling in diagnostic tools
 - Better service health detection
 
 ### 📦 Package Updates
+
 **Added to npm package:**
+
 - Diagnostic tools (diagnose.ts, diagnose.ps1, diagnose.sh)
 - User documentation (START_HERE.md, DIAGNOSE_NOW.md, TROUBLESHOOTING.md)
 - Upgrade guide (UPGRADE.md)
 
 **Archived (not in npm package):**
+
 - Development test files moved to `.archive/`
 - Internal test documentation
 
 ### 🎯 Breaking Changes
+
 **None!** This release is fully backward compatible with v1.2.0.
 
 ### 📊 Testing
+
 All tests passing:
+
 - Environment diagnostics: ✅ 9/11 passed (2 non-critical warnings)
 - Coolify tools: ✅ 100% functional
 - Supabase tools: ✅ 100% functional
@@ -113,9 +134,11 @@ All tests passing:
 ### 🎉 Production Hardening Features
 
 #### Input Validation System
+
 Comprehensive Zod-based validation for all tool inputs.
 
 **Features:**
+
 - Automatic validation for all tool parameters
 - Type-safe schemas for every operation
 - Helpful validation error messages
@@ -123,15 +146,18 @@ Comprehensive Zod-based validation for all tool inputs.
 - Min/max length and pattern checks
 
 **Benefits:**
+
 - Prevents invalid data from reaching APIs
 - Better error messages for users
 - Type safety at runtime
 - Catches common mistakes early
 
 #### Health Check System
+
 Automatic health checks on startup and verification tool.
 
 **Features:**
+
 - Automatic startup health checks
 - `verify_setup` tool for manual verification
 - Checks 6 critical services:
@@ -143,15 +169,18 @@ Automatic health checks on startup and verification tool.
 - Detailed health reports with recommendations
 
 **Benefits:**
+
 - Know immediately if something is misconfigured
 - Proactive issue detection
 - Troubleshooting guidance
 - Production readiness verification
 
 **New Tool:**
+
 - `verify_setup` - Comprehensive system verification
 
 **Documentation:**
+
 - Added `docs/VERIFICATION.md` - Complete verification guide
 - Startup health check logging
 - Troubleshooting for common issues
@@ -159,16 +188,19 @@ Automatic health checks on startup and verification tool.
 ### 📊 Updated Statistics
 
 **Tool Count:**
+
 - Before: 51 tools
 - After: 52 tools (+1 verification tool)
 
 **Code Quality:**
+
 - Input validation: ✅ All critical tools
 - Health checks: ✅ Automated
 - Error messages: ✅ Enhanced
 - Type safety: ✅ Runtime + compile time
 
 **Documentation:**
+
 - Added verification guide (400+ lines)
 - Updated README with validation info
 - Added troubleshooting sections
@@ -180,9 +212,11 @@ Automatic health checks on startup and verification tool.
 ### 🎉 Major Features Added
 
 #### Supabase CLI Integration
+
 Complete integration with the Supabase CLI for enhanced development workflows.
 
 **New Tools (16):**
+
 - `check_cli_installed` - Verify CLI installation and version
 - `supabase_init` - Initialize new Supabase projects
 - `supabase_link` - Link to remote Supabase projects
@@ -201,15 +235,18 @@ Complete integration with the Supabase CLI for enhanced development workflows.
 - `supabase_cli_execute` - Execute arbitrary CLI commands
 
 **Documentation:**
+
 - Added `docs/SUPABASE_CLI.md` - Complete CLI integration guide
 - Examples for all CLI workflows
 - Best practices for local development
 - Troubleshooting guide
 
 #### Migration Rollback System
+
 Comprehensive rollback functionality for safe database migration management.
 
 **New Tools (5):**
+
 - `create_migration_with_rollback` - Create migrations with up and down SQL
 - `rollback_migration` - Rollback specific migration
 - `rollback_to_version` - Rollback to a specific version
@@ -217,6 +254,7 @@ Comprehensive rollback functionality for safe database migration management.
 - `rollback_migration_with_down_sql` - Auto-rollback with stored down SQL
 
 **Features:**
+
 - Automatic down SQL storage
 - Safe rollback with transaction support
 - Multiple rollback strategies
@@ -224,6 +262,7 @@ Comprehensive rollback functionality for safe database migration management.
 - Rollback history tracking
 
 **Documentation:**
+
 - Added `docs/MIGRATION_ROLLBACK.md` - Complete rollback guide
 - Added `examples/rollback-example.md` - 8 detailed examples
 - Best practices for creating safe migrations
@@ -233,14 +272,17 @@ Comprehensive rollback functionality for safe database migration management.
 ### 📊 Statistics
 
 **Tool Count:**
+
 - Before: 30 tools
 - After: 51 tools (+21 tools, +70%)
 
 **Supabase Operations:**
+
 - Before: 16 tools
 - After: 36 tools (+20 tools, +125%)
 
 **Documentation:**
+
 - Added 2 major guides (CLI, Rollback)
 - Added 1 comprehensive example file
 - Updated README with new features
@@ -249,6 +291,7 @@ Comprehensive rollback functionality for safe database migration management.
 ### 🔧 Technical Improvements
 
 **New Files:**
+
 - `src/supabase-cli.ts` - Supabase CLI wrapper class
 - `src/tools/supabase-cli-tools.ts` - CLI tools registration
 - `docs/SUPABASE_CLI.md` - CLI documentation
@@ -256,6 +299,7 @@ Comprehensive rollback functionality for safe database migration management.
 - `examples/rollback-example.md` - Rollback examples
 
 **Enhanced Files:**
+
 - `src/supabase-client.ts` - Added 5 rollback methods
 - `src/tools/supabase-tools.ts` - Registered rollback tools
 - `src/index.ts` - Integrated CLI and added tool metadata
@@ -266,6 +310,7 @@ Comprehensive rollback functionality for safe database migration management.
 ### 💡 New Capabilities
 
 #### For Developers:
+
 - ✅ Full local development workflow with Supabase CLI
 - ✅ Safe migration management with rollback support
 - ✅ TypeScript type generation from database schema
@@ -274,6 +319,7 @@ Comprehensive rollback functionality for safe database migration management.
 - ✅ Data-preserving schema changes
 
 #### For DevOps:
+
 - ✅ One-command database resets for testing
 - ✅ Migration repair for sync issues
 - ✅ Version-controlled rollback SQL
@@ -281,6 +327,7 @@ Comprehensive rollback functionality for safe database migration management.
 - ✅ Production-safe migration workflows
 
 #### For AI Agents:
+
 - ✅ 21 new tools for enhanced automation
 - ✅ Natural language rollback commands
 - ✅ CLI command execution support
@@ -290,6 +337,7 @@ Comprehensive rollback functionality for safe database migration management.
 ### 🛡️ Safety Features
 
 **Rollback Safety:**
+
 - Transaction-wrapped rollbacks
 - Idempotent down SQL patterns
 - Data preservation strategies
@@ -297,6 +345,7 @@ Comprehensive rollback functionality for safe database migration management.
 - Testing workflows
 
 **CLI Safety:**
+
 - Environment variable isolation
 - Project linking validation
 - Local-first development
@@ -305,7 +354,9 @@ Comprehensive rollback functionality for safe database migration management.
 ### 📚 Documentation Improvements
 
 **New Guides:**
+
 1. **Supabase CLI Guide** (600+ lines)
+
    - Installation instructions
    - All 16 CLI tools documented
    - Complete workflows
@@ -313,6 +364,7 @@ Comprehensive rollback functionality for safe database migration management.
    - Troubleshooting
 
 2. **Migration Rollback Guide** (600+ lines)
+
    - All 5 rollback tools documented
    - Multiple rollback strategies
    - Safety checklist
@@ -337,6 +389,7 @@ None - these are feature additions only.
 ### 📦 Dependencies
 
 No new dependencies added. All features use existing:
+
 - `child_process` (Node.js built-in) for CLI
 - Existing Supabase client for rollback
 
@@ -349,6 +402,7 @@ No new dependencies added. All features use existing:
 ### 🎯 Usage Examples
 
 #### CLI Integration:
+
 ```typescript
 // Initialize and start local Supabase
 "Initialize a Supabase project and start it locally"
@@ -360,21 +414,23 @@ No new dependencies added. All features use existing:
 ```
 
 #### Rollback System:
+
 ```typescript
 // Create safe migration
 create_migration_with_rollback({
   name: "add_users",
   up_sql: "CREATE TABLE users (...);",
-  down_sql: "DROP TABLE users CASCADE;"
-})
+  down_sql: "DROP TABLE users CASCADE;",
+});
 
 // Rollback if needed
-rollback_migration_with_down_sql({ version: "20231215120000" })
+rollback_migration_with_down_sql({ version: "20231215120000" });
 ```
 
 ### 🔮 Future Enhancements
 
 Based on these additions, future features could include:
+
 - Automated rollback on deployment failure
 - Rollback dry-run mode
 - Rollback impact analysis
@@ -388,6 +444,7 @@ Based on these additions, future features could include:
 ### Initial Release
 
 **Core Features:**
+
 - Complete Coolify integration (14 tools)
 - Supabase management (16 tools)
 - Deployment automation (3 tools)
@@ -396,6 +453,7 @@ Based on these additions, future features could include:
 - Production-ready implementation
 
 **Documentation:**
+
 - README.md - Complete user guide
 - DEPLOYMENT_GUIDE.md - Deployment instructions
 - QUICKSTART.md - 5-minute setup
@@ -418,4 +476,3 @@ This project follows [Semantic Versioning](https://semver.org/):
 - [Documentation](./README.md)
 - [Issue Tracker](#)
 - [Release Notes](#)
-
