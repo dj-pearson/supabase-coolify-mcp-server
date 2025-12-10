@@ -47,7 +47,7 @@ export function registerDeploymentTools(
           JWT_SECRET: generateSecurePassword(64),
           ANON_KEY: generateSupabaseKey('anon'),
           SERVICE_ROLE_KEY: generateSupabaseKey('service_role'),
-          SITE_URL: config.custom_domain || `https://${name}.example.com`,
+          SITE_URL: config.custom_domain || process.env.SUPABASE_URL || `https://${name}.coolify.app`,
           ENABLE_REALTIME: config.enable_realtime !== false ? 'true' : 'false',
           ENABLE_STORAGE: config.enable_storage !== false ? 'true' : 'false',
           ENABLE_AUTH: config.enable_auth !== false ? 'true' : 'false',

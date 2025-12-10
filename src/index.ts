@@ -78,7 +78,7 @@ const supabaseCLI = new SupabaseCLI({
 const server = new Server(
   {
     name: 'supabase-coolify-mcp-server',
-    version: '1.1.0',
+    version: '1.2.2',
   },
   {
     capabilities: {

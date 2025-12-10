@@ -2,6 +2,29 @@
 
 All notable changes to the Supabase Coolify MCP Server.
 
+## [1.2.2] - 2024-12-10
+
+### 🐛 Bug Fixes
+
+#### Fixed Hardcoded Placeholder URLs
+- Fixed hardcoded placeholder URL in deployment tools
+- Changed from `https://${name}.example.com` to use environment variable or Coolify default
+- Now properly uses `SUPABASE_URL` from `.env` or falls back to `https://${name}.coolify.app`
+
+**Impact:** Users deploying Supabase instances through the MCP server will now use their configured SUPABASE_URL instead of a placeholder domain.
+
+**Changes:**
+- `src/tools/deployment-tools.ts`: Updated SITE_URL to use `process.env.SUPABASE_URL` or Coolify default
+- `src/index.ts`: Updated version to 1.2.2
+
+### 🔄 Version Updates
+- Updated hardcoded version in server from 1.1.0 to 1.2.2
+
+### 🎯 Breaking Changes
+**None!** This is a bug fix release, fully backward compatible.
+
+---
+
 ## [1.2.1] - 2024-12-10
 
 ### 🔍 Enhanced Diagnostics & User Experience
