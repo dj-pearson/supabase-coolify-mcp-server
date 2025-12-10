@@ -151,6 +151,34 @@ echo $SERVICE_ROLE_KEY
 
 ## 🎯 Usage
 
+### ⚠️ IMPORTANT: MCP Configuration
+
+**When using this server as an MCP server (Cursor, Claude Desktop, etc.), you MUST configure environment variables in your MCP configuration file - the `.env` file is NOT automatically loaded!**
+
+See [MCP_CONFIGURATION.md](MCP_CONFIGURATION.md) for complete setup instructions.
+
+**Quick Example:**
+```json
+{
+  "mcpServers": {
+    "supabase-coolify": {
+      "command": "npx",
+      "args": ["-y", "supabase-coolify-mcp-server"],
+      "env": {
+        "COOLIFY_API_URL": "http://your-coolify-url:8000",
+        "COOLIFY_API_TOKEN": "your-actual-token",
+        "SUPABASE_URL": "https://your-supabase-url.com",
+        "SUPABASE_SERVICE_ROLE_KEY": "your-actual-key"
+      }
+    }
+  }
+}
+```
+
+**Common Mistake:** Using placeholder values like `https://your-supabase-instance.example.com` - you MUST replace these with your actual URLs and credentials!
+
+---
+
 ### With Claude Desktop
 
 Add to your Claude Desktop configuration:

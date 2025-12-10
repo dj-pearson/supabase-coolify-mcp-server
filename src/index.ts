@@ -22,7 +22,10 @@ import { registerDeploymentTools } from './tools/deployment-tools.js';
 import { registerResources } from './resources.js';
 import { runStartupHealthCheck, createVerificationReport } from './health-check.js';
 
-// Load environment variables
+// Load environment variables with priority:
+// 1. MCP config env vars (if provided by MCP client)
+// 2. System environment variables
+// 3. .env file (fallback for development)
 dotenv.config();
 
 // Validate required environment variables
@@ -36,7 +39,13 @@ const requiredEnvVars = [
 const missingEnvVars = requiredEnvVars.filter((varName) => !process.env[varName]);
 if (missingEnvVars.length > 0) {
   console.error(`Error: Missing required environment variables: ${missingEnvVars.join(', ')}`);
-  console.error('Please check your .env file or environment configuration.');
+  console.error('');
+  console.error('Environment variables can be provided in 3 ways (in priority order):');
+  console.error('  1. MCP config env section (recommended for MCP usage)');
+  console.error('  2. System environment variables');
+  console.error('  3. .env file (for development)');
+  console.error('');
+  console.error('See MCP_CONFIGURATION.md for setup instructions.');
   process.exit(1);
 }
 
@@ -78,7 +87,7 @@ const supabaseCLI = new SupabaseCLI({
 const server = new Server(
   {
     name: 'supabase-coolify-mcp-server',
-    version: '1.2.2',
+    version: '1.2.3',
   },
   {
     capabilities: {

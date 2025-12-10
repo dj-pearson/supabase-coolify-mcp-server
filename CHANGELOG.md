@@ -2,6 +2,70 @@
 
 All notable changes to the Supabase Coolify MCP Server.
 
+## [1.2.3] - 2024-12-10
+
+### 📚 Critical Documentation Update
+
+#### Added MCP Configuration Guide
+- **New File:** `MCP_CONFIGURATION.md` - Comprehensive MCP configuration guide
+- **Critical Fix:** Documented that `.env` files are NOT loaded when running as MCP server
+- **Solution:** Environment variables must be passed through MCP client configuration
+
+**What this fixes:**
+Users were seeing placeholder URLs (`your-supabase-instance.example.com`) because the MCP server wasn't receiving environment variables. This was NOT a code bug - it's how MCP servers work!
+
+#### Key Documentation Points
+1. **MCP servers run as child processes** - they don't automatically load `.env` files
+2. **Environment variables MUST be in MCP configuration** - not in `.env` file
+3. **Updated README.md** with prominent warning and quick example
+4. **Provided working configuration examples** for:
+   - Cursor
+   - Claude Desktop
+   - VS Code / Copilot
+
+#### Configuration Example Added
+```json
+{
+  "mcpServers": {
+    "supabase-coolify": {
+      "command": "npx",
+      "args": ["-y", "supabase-coolify-mcp-server"],
+      "env": {
+        "COOLIFY_API_URL": "http://your-actual-url:8000",
+        "COOLIFY_API_TOKEN": "your-actual-token",
+        "SUPABASE_URL": "https://your-actual-url.com",
+        "SUPABASE_SERVICE_ROLE_KEY": "your-actual-key"
+      }
+    }
+  }
+}
+```
+
+### Changes
+- Added `MCP_CONFIGURATION.md` - Complete MCP configuration guide
+- Updated `README.md` - Added prominent MCP configuration warning
+- Added to package.json files array
+
+### 🔄 Version Updates
+- Package version: 1.2.2 → 1.2.3
+- Server version: 1.2.2 → 1.2.3
+
+### 🎯 Breaking Changes
+**None!** This is a documentation-only release.
+
+### 📖 For Users Seeing Placeholder URLs
+
+If you're seeing `your-supabase-instance.example.com`:
+
+1. **Read:** [MCP_CONFIGURATION.md](MCP_CONFIGURATION.md)
+2. **Add environment variables** to your MCP configuration file
+3. **Restart** your MCP client
+4. **Test** with `verify_setup` tool
+
+**The server code is correct** - it just needs environment variables passed through your MCP client configuration!
+
+---
+
 ## [1.2.2] - 2024-12-10
 
 ### 🐛 Bug Fixes

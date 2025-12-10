@@ -1,6 +1,6 @@
 {
   "name": "supabase-coolify-mcp-server",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "MCP server for managing self-hosted Supabase on Coolify with full deployment support",
   "main": "dist/index.js",
   "bin": {
@@ -18,6 +18,7 @@
     "START_HERE.md",
     "DIAGNOSE_NOW.md",
     "TROUBLESHOOTING.md",
+    "MCP_CONFIGURATION.md",
     "diagnose.ts",
     "diagnose.ps1",
     "diagnose.sh",
