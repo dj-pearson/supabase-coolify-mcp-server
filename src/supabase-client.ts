@@ -85,7 +85,7 @@ export class SupabaseManager {
 
       // Execute the migration SQL directly using the admin client
       // PostgREST doesn't support arbitrary SQL execution, so we need to use direct execution
-      const { data: result, error } = await this.client.rpc('exec', { 
+      const { error } = await this.client.rpc('exec', { 
         query: sql 
       });
       
@@ -94,7 +94,7 @@ export class SupabaseManager {
         // For self-hosted Supabase, we'll need to execute via admin API
         try {
           await this.adminClient.post('/rest/v1/rpc/query', { q: sql });
-        } catch (adminError) {
+        } catch {
           // As a last resort, record the migration without executing
           // (user will need to execute SQL manually via CLI or dashboard)
           console.error('Warning: Could not execute migration SQL automatically.');
