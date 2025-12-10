@@ -7,6 +7,7 @@ All notable changes to the Supabase Coolify MCP Server.
 ### 📚 Critical Documentation Update
 
 #### Added MCP Configuration Guide
+
 - **New File:** `MCP_CONFIGURATION.md` - Comprehensive MCP configuration guide
 - **Critical Fix:** Documented that `.env` files are NOT loaded when running as MCP server
 - **Solution:** Environment variables must be passed through MCP client configuration
@@ -15,6 +16,7 @@ All notable changes to the Supabase Coolify MCP Server.
 Users were seeing placeholder URLs (`your-supabase-instance.example.com`) because the MCP server wasn't receiving environment variables. This was NOT a code bug - it's how MCP servers work!
 
 #### Key Documentation Points
+
 1. **MCP servers run as child processes** - they don't automatically load `.env` files
 2. **Environment variables MUST be in MCP configuration** - not in `.env` file
 3. **Updated README.md** with prominent warning and quick example
@@ -24,6 +26,7 @@ Users were seeing placeholder URLs (`your-supabase-instance.example.com`) becaus
    - VS Code / Copilot
 
 #### Configuration Example Added
+
 ```json
 {
   "mcpServers": {
@@ -42,15 +45,18 @@ Users were seeing placeholder URLs (`your-supabase-instance.example.com`) becaus
 ```
 
 ### Changes
+
 - Added `MCP_CONFIGURATION.md` - Complete MCP configuration guide
 - Updated `README.md` - Added prominent MCP configuration warning
 - Added to package.json files array
 
 ### 🔄 Version Updates
+
 - Package version: 1.2.2 → 1.2.3
 - Server version: 1.2.2 → 1.2.3
 
 ### 🎯 Breaking Changes
+
 **None!** This is a documentation-only release.
 
 ### 📖 For Users Seeing Placeholder URLs
