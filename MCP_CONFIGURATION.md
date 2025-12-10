@@ -4,17 +4,32 @@
 
 The MCP server supports **three ways** to provide environment variables, checked in this order:
 
-1. **MCP Config `env` Section** (Highest Priority) ⭐ Recommended for MCP usage
-2. **System Environment Variables** (Medium Priority) ⭐ Recommended for security
-3. **`.env` File** (Lowest Priority) ⭐ Recommended for development only
+1. **MCP Config `env` Section** (Highest Priority) ⭐ **RECOMMENDED for most users**
+2. **System Environment Variables** (Medium Priority) ⭐ Recommended for advanced users
+3. **`.env` File** (Lowest Priority) ⭐ For local development only (not scalable)
 
 **The server will use the first value it finds for each variable.**
 
 ---
 
-## ✅ Option 1: MCP Config (Recommended for MCP Usage)
+## 🎯 Recommended Setup for Different Users
 
-Best for: Quick setup, per-project configuration
+| User Type | Recommended Method | Why |
+|-----------|-------------------|-----|
+| **New Users** | MCP Config (Option 1) | Fastest, most straightforward |
+| **Production** | MCP Config (Option 1) | Works everywhere, self-contained |
+| **Security-Conscious** | System Env Vars (Option 2) | Credentials not in config files |
+| **Contributors/Developers** | .env + Wrapper (Option 3) | Easy local development |
+| **Global Install Users** | MCP Config (Option 1) | Only option that works |
+| **NPX Users** | MCP Config (Option 1) | Self-contained, no paths |
+
+**⚠️ Important:** Options 2 and 3 require user-specific setup. **Option 1 is the only truly scalable method** for distribution and documentation.
+
+---
+
+## ✅ Option 1: MCP Config (⭐ RECOMMENDED - Most Scalable)
+
+Best for: **Everyone**, especially new users, production, and when sharing configurations
 
 ### Cursor
 

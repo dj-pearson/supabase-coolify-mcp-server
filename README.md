@@ -151,13 +151,14 @@ echo $SERVICE_ROLE_KEY
 
 ## 🎯 Usage
 
-### ⚠️ IMPORTANT: MCP Configuration
+### ⚠️ IMPORTANT: Environment Variables Required
 
-**When using this server as an MCP server (Cursor, Claude Desktop, etc.), you MUST configure environment variables in your MCP configuration file - the `.env` file is NOT automatically loaded!**
+**The MCP server requires environment variables to connect to Coolify and Supabase.**
 
-See [MCP_CONFIGURATION.md](MCP_CONFIGURATION.md) for complete setup instructions.
+**Recommended Setup (Works for Everyone):**
 
-**Quick Example:**
+Add environment variables directly to your MCP configuration:
+
 ```json
 {
   "mcpServers": {
@@ -168,14 +169,29 @@ See [MCP_CONFIGURATION.md](MCP_CONFIGURATION.md) for complete setup instructions
         "COOLIFY_API_URL": "http://your-coolify-url:8000",
         "COOLIFY_API_TOKEN": "your-actual-token",
         "SUPABASE_URL": "https://your-supabase-url.com",
-        "SUPABASE_SERVICE_ROLE_KEY": "your-actual-key"
+        "SUPABASE_SERVICE_ROLE_KEY": "your-actual-service-role-key"
       }
     }
   }
 }
 ```
 
-**Common Mistake:** Using placeholder values like `https://your-supabase-instance.example.com` - you MUST replace these with your actual URLs and credentials!
+**Replace the placeholder values with your actual credentials!**
+
+---
+
+### 📖 Configuration Options
+
+The server supports three methods for providing environment variables (in priority order):
+
+1. **MCP Config `env` section** ⭐ RECOMMENDED - Works for everyone, self-contained
+2. **System environment variables** - For advanced users who want credentials outside config
+3. **`.env` file with wrapper script** - For local development only (not scalable)
+
+**For detailed setup instructions for each method, see:** [MCP_CONFIGURATION.md](MCP_CONFIGURATION.md)
+
+**Common Mistake:** ❌ Leaving placeholder values like `https://your-supabase-instance.example.com`  
+**Solution:** ✅ Replace ALL placeholders with your actual URLs and credentials!
 
 ---
 
